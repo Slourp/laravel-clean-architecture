@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  app:
+    image: my_laravel_app:latest
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1000}
+        USER: ${USER:-myuser}
+        DEBUG_MODE: ${DEBUG_MODE:-off}
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d/sites-enabled
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD:-password}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-password}
+      MYSQL_USER: ${MYSQL_USER:-user}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-main}
