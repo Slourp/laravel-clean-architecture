@@ -1,5 +1,7 @@
 <?php
 
+namespace Domain\UserContext\Infrastructure\Routes;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function (Request $request) {
-    dd('api/users');
+    dd('USER');
 });

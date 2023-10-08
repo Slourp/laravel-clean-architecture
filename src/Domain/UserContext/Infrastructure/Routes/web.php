@@ -1,5 +1,7 @@
 <?php
 
+namespace Domain\UserContext\Infrastructure\Routes;
+
 use Illuminate\Support\Facades\Route;
 
 /*

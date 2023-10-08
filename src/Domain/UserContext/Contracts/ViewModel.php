@@ -1,5 +1,7 @@
 <?php
-namespace Domain\UserContext\contracts;
+
+namespace Domain\UserContext\Contracts;
+
 interface ViewModel
 {
 }
